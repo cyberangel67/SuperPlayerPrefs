@@ -3,7 +3,7 @@
  
 Is a small library that can be used in replace of PlayerPrefs, it behaves in the same manner as PlayerPres, only that SuperPlayerPrefs saves the data to the games data directory. Where as during development, if one is not careful, you could end up with a million entries over n games. So rather than bog down the registry on Windows, while in development, you can jst simpley delete the file from the games save directory.
 
-Therefore because it follows the ApplicationpersistentDataPath then the variables can be found in the following locations.
+Therefore because it follows the Application persistentDataPath then the variables can be found in the following locations.
 
 **Windows Store Apps:** *Application.persistentDataPath points to %userprofile%\AppData\Local\Packages\<productname>\LocalState.*
 
