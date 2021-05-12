@@ -64,8 +64,6 @@ public static class SuperPlayerPrefs
                     return;
                 }
             }
-
-            return;
         }
     }
 
