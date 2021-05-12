@@ -132,36 +132,14 @@ public static class SuperPlayerPrefs
         return saveData.ContainsKey(key);
     }
 
-    #region Get Methods
     /// <summary>
     /// 
     /// </summary>
     /// <param name="key"></param>
     /// <returns></returns>
-    public static float GetFloat(string key)
+    public static T Get<T>(string key)
     {
-        return GetFloat(key, 0f);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="defaultValue"></param>
-    /// <returns></returns>
-    public static float GetFloat(string key, float defaultValue)
-    {
-        return saveData.Get<float>(key, defaultValue);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <returns></returns>
-    public static int GetInt(string key)
-    {
-        return GetInt(key, 0);
+        return Get<T>(key, 0);
     }
 
     /// <summary>
@@ -170,127 +148,29 @@ public static class SuperPlayerPrefs
     /// <param name="key"></param>
     /// <param name="defaultValue"></param>
     /// <returns></returns>
-    public static int GetInt(string key, int defaultValue)
+    public static T Get<T>(string key, object defaultValue)
     {
-        return saveData.Get<int>(key, defaultValue);
+        if (saveData.ContainsKey(key))
+        {
+            return (T)saveData[key];
+        }
+        else
+        {
+            return (T)defaultValue;
+        }
     }
 
     /// <summary>
     /// 
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     /// <param name="key"></param>
-    /// <returns></returns>
-    public static string GetString(string key)
+    /// <param name="value"></param>
+    public static void Set<T>(string key, object value)
     {
-        return GetString(key, string.Empty);
-    }
+        saveData.Add(key, (T)value);
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="defaultValue"></param>
-    /// <returns></returns>
-    public static string GetString(string key, string defaultValue)
-    {
-        return saveData.Get<string>(key, defaultValue);
+        Dictionary<string, object> ss = saveData;
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <returns></returns>
-    public static bool GetBool(string key)
-    {
-        return GetBool(key, false);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <returns></returns>
-    public static double GetDouble(string key)
-    {
-        return GetDouble(key, 0);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="defaultValue"></param>
-    /// <returns></returns>
-    public static double GetDouble(string key, double defaultValue)
-    {
-        return saveData.Get<double>(key, defaultValue);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <returns></returns>
-    public static decimal GetDecimal(string key)
-    {
-        return GetDecimal(key, 0);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="defaultValue"></param>
-    /// <returns></returns>
-    public static decimal GetDecimal(string key, decimal defaultValue)
-    {
-        return saveData.Get<decimal>(key, defaultValue);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="key"></param>
-    /// <param name="defaultValue"></param>
-    /// <returns></returns>
-    public static bool GetBool(string key, bool defaultValue)
-    {
-        return saveData.Get<bool>(key, defaultValue);
-    }
-
-    #endregion
-
-    #region Set Methods
-    /// <summary>
-    /// 
-    /// </summary>
-    public static void SetFloat(string key, object value)
-    {
-        saveData.Set<float>(key, value);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public static void SetInt(string key, object value)
-    {
-        saveData.Set<int>(key, value);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public static void SetString(string key, object value)
-    {
-        saveData.Set<string>(key, value);
-    }
-
-    public static void SetBool(string key, object value)
-    {
-        saveData.Set<bool>(key, value);
-    }
-    #endregion
 
 }
-
