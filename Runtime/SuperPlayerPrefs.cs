@@ -51,7 +51,7 @@ public static class SuperPlayerPrefs
             {
                 if (fileStream == null)
                 {
-                    Debug.Log("ERROR: Could not load Super Preferences!");
+                    Debug.Log("ERROR: Could not load SuperPlayerPrefs!");
                     return;
                 }
 
@@ -62,7 +62,7 @@ public static class SuperPlayerPrefs
                 }
                 catch (Exception arg)
                 {
-                    Debug.Log(string.Format("Critical Error loading Super Preferences : {0}", arg));
+                    Debug.Log(string.Format("Critical Error loading SuperPlayerPrefs : {0}", arg));
                     return;
                 }
             }
@@ -86,7 +86,7 @@ public static class SuperPlayerPrefs
     /// <returns></returns>
     private static string GetDataPath()
     {
-        return $"{Application.persistentDataPath}/PlayerPrefsX";
+        return $"{Application.persistentDataPath}/SuperPlayerPrefs";
     }
 
     /// <summary>
@@ -105,7 +105,7 @@ public static class SuperPlayerPrefs
         }
         catch (Exception arg)
         {
-            Debug.LogError(string.Format("Critical error saving PlayerPresX data: {0}", arg));
+            Debug.LogError(string.Format("Critical error saving SuperPlayerPrefs data: {0}", arg));
         }
     }
 
@@ -169,8 +169,6 @@ public static class SuperPlayerPrefs
     public static void Set<T>(string key, object value)
     {
         saveData.Add(key, (T)value);
-
-        Dictionary<string, object> ss = saveData;
     }
 
 }
