@@ -15,12 +15,10 @@ public static class SuperPlayerPrefs
     private static Dictionary<string, object> saveData = new Dictionary<string, object>();
 
     /// <summary>
-    /// 
+    /// Constructor for our class.
     /// </summary>
     static SuperPlayerPrefs()
     {
-        Debug.Log($"Constructor....");
-
 #if UNITY_EDITOR
         // If we are in the editor then this could instantiated and called a number of times, so
         // we need to make sure that the subscription is removed, before we subscribe.
@@ -30,18 +28,18 @@ public static class SuperPlayerPrefs
     }
 
     /// <summary>
-    /// 
+    /// Initialise method that subscribes to the application on quiting event, and then loads the
+    /// data into memory.
     /// </summary>
     [RuntimeInitializeOnLoadMethod]
     private static void Initialize()
     {
-        Debug.Log($"Intializing....");
         Application.quitting += OnApplicationQuit;
         Load();
     }
 
     /// <summary>
-    /// 
+    /// Load method
     /// </summary>
     private static void Load()
     {
@@ -72,7 +70,7 @@ public static class SuperPlayerPrefs
     }
 
     /// <summary>
-    /// 
+    /// OnQuit method, which gets called when the game is exiting.
     /// </summary>
     private static void OnApplicationQuit()
     {
@@ -81,7 +79,7 @@ public static class SuperPlayerPrefs
     }
 
     /// <summary>
-    /// 
+    /// Gets the datapath and name to where the save will be saved, and loaded.
     /// </summary>
     /// <returns></returns>
     private static string GetDataPath()
@@ -90,7 +88,7 @@ public static class SuperPlayerPrefs
     }
 
     /// <summary>
-    /// 
+    /// Save method
     /// </summary>
     public static void Save()
     {
@@ -109,23 +107,27 @@ public static class SuperPlayerPrefs
         }
     }
 
+    /// <summary>
+    /// Deletes all entries from the dictionary.
+    /// </summary>
     public static void DeleteAll()
     {
         saveData.Clear();
     }
 
     /// <summary>
-    /// 
+    /// Deletes a key from the dictionary
     /// </summary>
+    /// <param name="key">name of entry to delete from the dictionary</param>
     public static void DeleteKey(string key)
     {
         saveData.Remove(key);
     }
 
     /// <summary>
-    /// 
+    /// Checks to see if the dictionary has a specific key.
     /// </summary>
-    /// <param name="key"></param>
+    /// <param name="key">key to search for</param>
     /// <returns></returns>
     public static bool HasKey(string key)
     {
@@ -133,9 +135,9 @@ public static class SuperPlayerPrefs
     }
 
     /// <summary>
-    /// 
+    /// Returns the specific object from the saved data with the specified key, if found.
     /// </summary>
-    /// <param name="key"></param>
+    /// <param name="key">retrieve object with this key</param>
     /// <returns></returns>
     public static T Get<T>(string key)
     {
@@ -143,10 +145,11 @@ public static class SuperPlayerPrefs
     }
 
     /// <summary>
-    /// 
+    /// Returns the specific object from the saved data, using the key. If it is not found then
+    /// return it as the specified default value.
     /// </summary>
-    /// <param name="key"></param>
-    /// <param name="defaultValue"></param>
+    /// <param name="key">get with the key.</param>
+    /// <param name="defaultValue">set to this value if can't be found.</param>
     /// <returns></returns>
     public static T Get<T>(string key, object defaultValue)
     {
@@ -156,16 +159,19 @@ public static class SuperPlayerPrefs
         }
         else
         {
-            return (T)default;
+            if (typeof(T).IsValueType)
+                return (T)defaultValue;
+            else
+                return (T)default;
         }
     }
 
     /// <summary>
-    /// 
+    /// Save the specified object of type in the saved data, with the specified key.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="key"></param>
-    /// <param name="value"></param>
+    /// <typeparam name="T">Specifies the object Type</typeparam>
+    /// <param name="key">will be index by the key</param>
+    /// <param name="value">value to save in the dictionary</param>
     public static void Set<T>(string key, object value)
     {
         saveData.Add(key, (T)value);
