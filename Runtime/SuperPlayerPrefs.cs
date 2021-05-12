@@ -156,7 +156,7 @@ public static class SuperPlayerPrefs
         }
         else
         {
-            return (T)defaultValue;
+            return (T)default;
         }
     }
 
