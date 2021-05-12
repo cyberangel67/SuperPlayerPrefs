@@ -6,11 +6,13 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 [InitializeOnLoad]
+#endif
 public static class SuperPlayerPrefs
 {
 
-    public static Dictionary<string, object> saveData = new Dictionary<string, object>();
+    private static Dictionary<string, object> saveData = new Dictionary<string, object>();
 
     /// <summary>
     /// 
@@ -18,20 +20,22 @@ public static class SuperPlayerPrefs
     static SuperPlayerPrefs()
     {
         Debug.Log($"Constructor....");
+
+#if UNITY_EDITOR
+        // If we are in the editor then this could instantiated and called a number of times, so
+        // we need to make sure that the subscription is removed, before we subscribe.
+        Application.quitting -= OnApplicationQuit;
+#endif
         Initialize();
     }
 
     /// <summary>
     /// 
     /// </summary>
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterAssembliesLoaded)]
-    static void Initialize()
+    [RuntimeInitializeOnLoadMethod]
+    private static void Initialize()
     {
         Debug.Log($"Intializing....");
-
-        // If we are in the editor then this could instantiated and called a number of times, so
-        // we need to make sure that the subscription is removed, before we subscribe.
-        Application.quitting -= OnApplicationQuit;
         Application.quitting += OnApplicationQuit;
         Load();
     }
