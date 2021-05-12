@@ -29,7 +29,7 @@ Just like PlayerPrefs it isn't difficult to use, and because it is simplistic in
 
 **Example usage**
 
-```CS
+```javascript
     // Get a string
     string testString = SuperPlayerPrefs.Get<string>("test");
     
