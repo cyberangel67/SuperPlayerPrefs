@@ -29,6 +29,7 @@ Just like PlayerPrefs it isn't difficult to use, and because it is simplistic in
 
 **Example usage**
 
+```CS
     // Get a string
     string testString = SuperPlayerPrefs.Get<string>("test");
     
@@ -57,5 +58,4 @@ Just like PlayerPrefs it isn't difficult to use, and because it is simplistic in
 	    
 	    SuperPlayerPrefs.Set<TestClass>("MainPerson", tc);
     }
-
-
+```
