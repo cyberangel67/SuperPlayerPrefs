@@ -37,7 +37,7 @@ Just like PlayerPrefs it isn't difficult to use, and because it is simplistic in
     string testString = SuperPlayerPrefs.Get<string>("Test", "default value to return");
     
     // Get a boolean
-    bool levelCompleted = SuperPlayerPrefs.Get<string>("Level1_Completed", false);
+    bool levelCompleted = SuperPlayerPrefs.Get<bool>("Level1_Completed", false);
     
     //Storing/Saving a variable
     SuperPlayerPrefs.Set<string>("Test");
