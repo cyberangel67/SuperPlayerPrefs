@@ -21,7 +21,7 @@ Therefore because it follows the Application persistentDataPath then the variabl
 
 **Mac:** *Application.persistentDataPath points to the user Library folder. (This folder is often hidden.) In recent Unity releases user data is written into ~/Library/Application Support/company name/product name. Older versions of Unity wrote into the ~/Library/Caches folder, or ~/Library/Application Support/unity.company name.product name. These folders are all searched for by Unity. The application finds and uses the oldest folder with the required data on your system*
 
-## Insallation
+## Installation
 At the presnt time this will not work as a package, but once I figure out why it is not working, it will be updated. For the present time, all you need to do is download the files and install into your project, and that is it. It will self setup and be ready to go from there.
 
 ## Usage
