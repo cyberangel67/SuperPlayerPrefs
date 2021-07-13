@@ -22,10 +22,8 @@ public static class SuperPlayerPrefs
 #if UNITY_EDITOR
         // If we are in the editor then this could instantiated and called a number of times, so
         // we need to make sure that the subscription is removed, before we subscribe.
+
         Application.quitting -= OnApplicationQuit;
-
-        Debug.Log("Constructor.....");
-
 #endif
         Initialize();
     }
@@ -37,8 +35,6 @@ public static class SuperPlayerPrefs
     [RuntimeInitializeOnLoadMethod]
     private static void Initialize()
     {
-        Debug.Log("Initialise.....");
-
         Application.quitting += OnApplicationQuit;
         Load();
     }
