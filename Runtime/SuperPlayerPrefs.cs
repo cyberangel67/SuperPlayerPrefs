@@ -25,6 +25,7 @@ public static class SuperPlayerPrefs
         Application.quitting -= OnApplicationQuit;
 
         Debug.Log("Constructor.....");
+
 #endif
         Initialize();
     }

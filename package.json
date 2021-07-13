@@ -1,7 +1,7 @@
 {
   "name": "com.studious.superplayerprefs",
   "displayName": "Super Player Preferences",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "unity": "2019.4",
   "unityRelease": "1f1",
   "description": "A small library that can be used to replace the playerPrefs and proves more flexability than PlayerPrefs does.",
@@ -11,5 +11,6 @@
   "hideInEditor": false,
   "author": {
     "name": "Andrew Scott"
-  }
+  },
+  "type": "library"
 }
