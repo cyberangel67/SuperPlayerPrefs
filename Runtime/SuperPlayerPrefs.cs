@@ -20,10 +20,8 @@ public static class SuperPlayerPrefs
     static SuperPlayerPrefs()
     {
 #if UNITY_EDITOR
-        // If we are in the editor then this could instantiated and called a number of times, so
-        // we need to make sure that the subscription is removed, before we subscribe.
-
-        Application.quitting -= OnApplicationQuit;
+        if (!EditorApplication.isPlayingOrWillChangePlaymode)
+            return;
 #endif
         Initialize();
     }
@@ -32,7 +30,6 @@ public static class SuperPlayerPrefs
     /// Initialise method that subscribes to the application on quiting event, and then loads the
     /// data into memory.
     /// </summary>
-    [RuntimeInitializeOnLoadMethod]
     private static void Initialize()
     {
         Application.quitting += OnApplicationQuit;
@@ -91,15 +88,16 @@ public static class SuperPlayerPrefs
     /// </summary>
     public static void Save()
     {
-
         try
         {
             using (FileStream fileStream = new FileStream(GetDataPath(), FileMode.Create))
             {
+                var test = saveData;
                 IFormatter formatter = new BinaryFormatter();
                 formatter.Serialize(fileStream, saveData);
                 fileStream.Close();
             }
+
         }
         catch (Exception arg)
         {
@@ -174,13 +172,13 @@ public static class SuperPlayerPrefs
     /// <param name="value">value to save in the dictionary</param>
     public static void Set<T>(string key, object value)
     {
-        if(saveData.ContainsKey(key))
+        if (saveData.ContainsKey(key))
         {
             saveData[key] = value;
-        } else
+        }
+        else
         {
             saveData.Add(key, (T)value);
         }
     }
-
 }
