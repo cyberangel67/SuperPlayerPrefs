@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEditor;
+using System.Xml;
 
 #if UNITY_EDITOR
 [InitializeOnLoad]
@@ -43,6 +44,7 @@ public static class SuperPlayerPrefs
     {
         if (File.Exists(GetDataPath()))
         {
+
             using (FileStream fileStream = new FileStream(GetDataPath(), FileMode.Open))
             {
                 if (fileStream == null)
@@ -90,6 +92,7 @@ public static class SuperPlayerPrefs
     {
         try
         {
+
             using (FileStream fileStream = new FileStream(GetDataPath(), FileMode.Create))
             {
                 var test = saveData;
